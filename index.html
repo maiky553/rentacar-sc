@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentaCar SC — Renta de carros y motos en Santiago de Cuba</title>
+<meta name="description" content="Renta de carros y motos en Santiago de Cuba. Reserva directo por WhatsApp, aceptamos cualquier tipo de pago. Atención rápida y de confianza.">
+<link rel="icon" type="image/png" href="images/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="inicio">
+  <div class="container header-inner">
+    <a class="brand" href="#inicio" aria-label="RentaCar SC - Inicio">
+      <img src="images/logo.png" alt="RentaCar SC" class="brand-logo">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#inicio">Inicio</a>
+      <a href="#vehiculos">Vehículos</a>
+      <a href="#informacion">Información</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <a href="#" class="btn btn-whatsapp header-cta" data-whatsapp-cta data-message="Hola, quisiera información para rentar un vehículo en Santiago de Cuba.">
+      <svg class="icon-wsp" viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C9.4 3 4.02 8.36 4.02 15c0 2.34.65 4.53 1.78 6.4L4 29l7.8-1.75A11.9 11.9 0 0 0 16.02 27C22.64 27 28 21.64 28 15S22.64 3 16.02 3z" fill="none" stroke="currentColor" stroke-width="0"/><path d="M22.9 18.5c-.35-.18-2.06-1.02-2.38-1.13-.32-.12-.55-.18-.79.18-.23.35-.9 1.13-1.1 1.36-.2.23-.4.26-.75.09-.35-.18-1.47-.54-2.8-1.73-1.03-.92-1.73-2.06-1.93-2.4-.2-.35-.02-.54.15-.71.16-.16.35-.4.53-.6.18-.2.23-.35.35-.58.12-.23.06-.44-.03-.62-.09-.18-.79-1.9-1.08-2.6-.28-.68-.57-.59-.79-.6h-.67c-.23 0-.6.09-.92.44-.32.35-1.2 1.17-1.2 2.86s1.23 3.32 1.4 3.55c.18.23 2.42 3.7 5.87 5.19.82.35 1.46.56 1.96.72.82.26 1.57.22 2.16.13.66-.1 2.06-.84 2.35-1.65.29-.81.29-1.5.2-1.65-.08-.15-.31-.24-.66-.41z" fill="currentColor"/></svg>
+      Reservar
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-sky"></div>
+  <div class="hero-sun"></div>
+
+  <div class="hero-mountains" aria-hidden="true">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="mountain-layer mountain-back">
+      <path d="M0,220 L120,160 L260,210 L420,120 L560,200 L720,90 L900,190 L1060,130 L1220,205 L1440,150 L1440,320 L0,320 Z"/>
+    </svg>
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="mountain-layer mountain-front">
+      <path d="M0,260 L150,210 L300,255 L470,190 L620,250 L780,175 L940,240 L1100,195 L1260,250 L1440,210 L1440,320 L0,320 Z"/>
+    </svg>
+  </div>
+
+  <div class="hero-road" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+    <p class="eyebrow eyebrow-light">Renta de vehículos · Santiago de Cuba</p>
+    <h1 class="hero-title">Muévete por Santiago<br>a tu ritmo</h1>
+    <p class="hero-subtitle">Carros y motos disponibles para rentar, solo en Santiago de Cuba. Reserva directo por WhatsApp y paga como te sea más cómodo.</p>
+    <div class="hero-actions">
+      <a href="#vehiculos" class="btn btn-primary">Ver vehículos disponibles</a>
+      <a href="#informacion" class="btn btn-ghost-light">Cómo rentar</a>
+    </div>
+
+    <ul class="hero-badges">
+      <li><span class="dot"></span>Solo en Santiago de Cuba</li>
+      <li><span class="dot"></span>Aceptamos cualquier tipo de pago</li>
+      <li><span class="dot"></span>Reserva directa por WhatsApp</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ VEHICULOS ============ -->
+<section class="vehiculos" id="vehiculos">
+  <div class="container">
+    <p class="eyebrow">Flota disponible</p>
+    <h2 class="section-title">Elige tu vehículo</h2>
+    <p class="section-lead">Estos son algunos de los vehículos con los que trabajamos en Santiago de Cuba. Escribe por WhatsApp para conocer disponibilidad y precio del que te interese.</p>
+
+    <div class="vehicle-grid" id="vehicleGrid">
+      <!-- Las tarjetas se generan desde js/script.js (VEHICLES) -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFORMACION ============ -->
+<section class="informacion" id="informacion">
+  <div class="container info-grid">
+
+    <div class="info-main">
+      <p class="eyebrow">Información</p>
+      <h2 class="section-title">Lo que necesitas saber antes de rentar</h2>
+
+      <ul class="info-list">
+        <li>
+          <span class="info-check">✓</span>
+          <div>
+            <h3>Documentos</h3>
+            <p>Carné de identidad o pasaporte vigente y licencia de conducción válida.</p>
+          </div>
+        </li>
+        <li>
+          <span class="info-check">✓</span>
+          <div>
+            <h3>Zona de servicio</h3>
+            <p>Trabajamos exclusivamente dentro de Santiago de Cuba. La entrega y devolución se coordinan por WhatsApp.</p>
+          </div>
+        </li>
+        <li>
+          <span class="info-check">✓</span>
+          <div>
+            <h3>Formas de pago</h3>
+            <p>Aceptamos cualquier tipo de pago. Consulta las opciones disponibles al momento de reservar.</p>
+          </div>
+        </li>
+        <li>
+          <span class="info-check">✓</span>
+          <div>
+            <h3>Reserva</h3>
+            <p>Escribe al vehículo que te interese y coordinamos fecha, horario y punto de entrega contigo.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <aside class="info-card">
+      <h3>¿Cómo funciona?</h3>
+      <ol class="steps">
+        <li><span class="step-n">1</span>Elige el carro o la moto que necesitas.</li>
+        <li><span class="step-n">2</span>Pulsa "Reservar por WhatsApp".</li>
+        <li><span class="step-n">3</span>Confirma fecha, punto de entrega y forma de pago.</li>
+        <li><span class="step-n">4</span>Recoge tu vehículo en Santiago de Cuba.</li>
+      </ol>
+      <a href="#" class="btn btn-whatsapp btn-block" data-whatsapp-cta data-message="Hola, tengo una duda sobre cómo rentar un vehículo en Santiago de Cuba.">Escribir por WhatsApp</a>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ============ POR QUE ELEGIRNOS ============ -->
+<section class="ventajas">
+  <div class="container">
+    <p class="eyebrow">Por qué elegirnos</p>
+    <h2 class="section-title">Renta local, sin complicaciones</h2>
+
+    <div class="ventajas-grid">
+      <div class="ventaja-card">
+        <div class="ventaja-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6l-9-4z"/></svg>
+        </div>
+        <h3>Confianza local</h3>
+        <p>Somos de Santiago de Cuba y solo operamos aquí. Conocemos la ciudad y a nuestros clientes.</p>
+      </div>
+
+      <div class="ventaja-card">
+        <div class="ventaja-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4v16h16V4z"/><path d="M8 2v4M16 2v4M4 10h16"/></svg>
+        </div>
+        <h3>Respuesta rápida</h3>
+        <p>Coordina tu renta directo por WhatsApp, sin formularios largos ni esperas.</p>
+      </div>
+
+      <div class="ventaja-card">
+        <div class="ventaja-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </div>
+        <h3>Cualquier tipo de pago</h3>
+        <p>Nos adaptamos a la forma de pago que mejor te funcione.</p>
+      </div>
+
+      <div class="ventaja-card">
+        <div class="ventaja-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>Flexibilidad</h3>
+        <p>Coordinamos horarios y punto de entrega dentro de Santiago de Cuba según tu itinerario.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-band" id="contacto">
+  <div class="container cta-inner">
+    <div>
+      <h2>¿Listo para moverte por Santiago de Cuba?</h2>
+      <p>Escríbenos y te ayudamos a elegir el vehículo ideal para tus días aquí.</p>
+    </div>
+    <a href="#" class="btn btn-primary btn-lg" data-whatsapp-cta data-message="Hola, quisiera rentar un vehículo en Santiago de Cuba.">Reservar por WhatsApp</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="images/logo.png" alt="RentaCar SC" class="footer-logo">
+      <p>Renta de carros y motos en Santiago de Cuba.</p>
+    </div>
+
+    <nav class="footer-nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#vehiculos">Vehículos</a>
+      <a href="#informacion">Información</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <p class="footer-note" id="footerContact">WhatsApp: próximamente</p>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> RentaCar SC — Santiago de Cuba. Servicio exclusivo dentro de la ciudad.</p>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FLOTANTE ============ -->
+<a href="#" class="whatsapp-float" id="whatsappFloat" data-whatsapp-cta data-message="Hola, quisiera información para rentar un vehículo en Santiago de Cuba." aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M22.9 18.5c-.35-.18-2.06-1.02-2.38-1.13-.32-.12-.55-.18-.79.18-.23.35-.9 1.13-1.1 1.36-.2.23-.4.26-.75.09-.35-.18-1.47-.54-2.8-1.73-1.03-.92-1.73-2.06-1.93-2.4-.2-.35-.02-.54.15-.71.16-.16.35-.4.53-.6.18-.2.23-.35.35-.58.12-.23.06-.44-.03-.62-.09-.18-.79-1.9-1.08-2.6-.28-.68-.57-.59-.79-.6h-.67c-.23 0-.6.09-.92.44-.32.35-1.2 1.17-1.2 2.86s1.23 3.32 1.4 3.55c.18.23 2.42 3.7 5.87 5.19.82.35 1.46.56 1.96.72.82.26 1.57.22 2.16.13.66-.1 2.06-.84 2.35-1.65.29-.81.29-1.5.2-1.65-.08-.15-.31-.24-.66-.41zM16.02 3C9.4 3 4.02 8.36 4.02 15c0 2.34.65 4.53 1.78 6.4L4 29l7.8-1.75A11.9 11.9 0 0 0 16.02 27C22.64 27 28 21.64 28 15S22.64 3 16.02 3z"/></svg>
+</a>
+
+<!-- Aviso flotante (toast) para cuando falta el número de WhatsApp -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

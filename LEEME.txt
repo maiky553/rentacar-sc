@@ -1,0 +1,50 @@
+RentaCar SC — Guía rápida
+==========================
+
+ESTRUCTURA DE ARCHIVOS
+- index.html          -> contenido de la página
+- css/style.css        -> todos los estilos (colores, tipografía, etc.)
+- js/script.js         -> aquí se edita el número de WhatsApp y los vehículos
+- images/logo.png      -> tu logo
+- images/vehiculos/    -> carpeta donde debes poner las fotos de los vehículos
+
+1) AGREGAR EL NÚMERO DE WHATSAPP
+Abre js/script.js y busca esta línea al principio del archivo:
+
+    const WHATSAPP_NUMBER = "";
+
+Escribe el número sin "+" y sin espacios, con código de país. Ejemplo:
+
+    const WHATSAPP_NUMBER = "5355123456";
+
+Mientras esté vacío, los botones muestran un aviso de "próximamente" en
+lugar de llevar a un número inexistente.
+
+2) AGREGAR LAS FOTOS DE LOS VEHÍCULOS
+Cada vehículo en js/script.js tiene una línea "image" con una ruta, por ejemplo:
+
+    image: "images/vehiculos/suzuki-alto.jpg"
+
+Solo debes guardar la foto real con ese mismo nombre dentro de la carpeta
+images/vehiculos/. La página la mostrará automáticamente. Si el archivo no
+existe todavía, se ve un cartel "Foto próximamente" (no se rompe el diseño).
+
+3) AGREGAR, EDITAR O QUITAR VEHÍCULOS
+En js/script.js, dentro de la lista VEHICLES, cada vehículo es un bloque como este:
+
+    {
+      name: "Suzuki Alto",
+      type: "Carro",                 // "Carro" o "Moto"
+      specs: ["Automático", "4 pasajeros", "Aire acondicionado"],
+      price: "Consultar por WhatsApp",
+      image: "images/vehiculos/suzuki-alto.jpg"
+    },
+
+Puedes copiar y pegar un bloque para agregar otro vehículo, cambiar los
+datos, o borrar el bloque completo para quitarlo.
+
+4) PUBLICAR LA PÁGINA
+Estos 3 archivos (index.html, css/style.css, js/script.js) más la carpeta
+images/ deben subirse juntos, manteniendo la misma estructura de carpetas,
+a cualquier servicio de hosting (por ejemplo GitHub Pages, Netlify, o el
+hosting que prefieras).
