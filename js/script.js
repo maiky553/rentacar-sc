@@ -9,60 +9,63 @@
    Mientras esté vacío ("") los botones avisan que el
    contacto estará disponible pronto.
 ---------------------------------------------------------- */
-const WHATSAPP_NUMBER = ""; // <-- pon aquí el número cuando lo tengas
+const WHATSAPP_NUMBER = "5353080125";
 
 /* ----------------------------------------------------------
    2) VEHÍCULOS
    Edita, agrega o quita vehículos en esta lista.
-   - image: ruta a la foto. Colócala en images/vehiculos/
-            con ese mismo nombre y aparecerá automáticamente.
-            Si no existe todavía, se muestra un marcador
-            "Foto próximamente" en su lugar (no rompe el diseño).
+   - images: lista de fotos del vehículo (puede ser una o varias).
+             Colócalas en images/vehiculos/ con esos mismos nombres
+             y aparecerán automáticamente, con flechas para pasar
+             de una foto a otra si hay más de una.
+             Si una foto no existe todavía, se muestra un marcador
+             "Foto próximamente" en su lugar (no rompe el diseño).
    - price: escribe el texto que quieras mostrar
             (ej: "Desde 30 USD/día" o "Consultar por WhatsApp").
 ---------------------------------------------------------- */
 const VEHICLES = [
   {
-    name: "Suzuki Alto",
-    type: "Carro",
-    specs: ["Automático", "4 pasajeros", "Aire acondicionado"],
-    price: "Consultar por WhatsApp",
-    image: "images/vehiculos/suzuki-alto.jpg"
-  },
-  {
     name: "Kia Picanto",
     type: "Carro",
     specs: ["Automático", "4 pasajeros", "Aire acondicionado"],
     price: "Consultar por WhatsApp",
-    image: "images/vehiculos/kia-picanto.jpg"
+    images: [
+      "images/vehiculos/kia-picanto-lateral.jpg",
+      "images/vehiculos/kia-picanto-frontal.jpg",
+      "images/vehiculos/kia-picanto-trasera.jpg",
+      "images/vehiculos/kia-picanto-interior.jpg"
+    ]
   },
   {
-    name: "Geely Emgrand",
+    name: "Hyundai Grand i10",
     type: "Carro",
-    specs: ["Automático", "5 pasajeros", "Maletero amplio"],
+    specs: ["Automático", "4 pasajeros", "Aire acondicionado"],
     price: "Consultar por WhatsApp",
-    image: "images/vehiculos/geely-emgrand.jpg"
+    images: [
+      "images/vehiculos/hyundai-grand-i10-lateral.jpg",
+      "images/vehiculos/hyundai-grand-i10-frontal.jpg"
+    ]
   },
   {
-    name: "Peugeot 301",
+    name: "Minivan BAW",
+    type: "Van",
+    specs: ["Automático", "7 pasajeros", "Ideal para grupos"],
+    price: "Consultar por WhatsApp",
+    images: ["images/vehiculos/baw-minivan.jpg"]
+  },
+  {
+    name: "Moto Scooter",
+    type: "Moto",
+    specs: ["Maxi-scooter", "2 pasajeros", "Amplio espacio de carga"],
+    price: "Consultar por WhatsApp",
+    images: ["images/vehiculos/moto-scooter.jpg"]
+  },
+  {
+    name: "Geely CK",
     type: "Carro",
-    specs: ["Automático", "5 pasajeros", "Aire acondicionado"],
+    specs: ["5 pasajeros", "Ideal para trayectos largos"],
     price: "Consultar por WhatsApp",
-    image: "images/vehiculos/peugeot-301.jpg"
-  },
-  {
-    name: "Moto eléctrica",
-    type: "Moto",
-    specs: ["Ideal ciudad", "Bajo consumo", "1 pasajero"],
-    price: "Consultar por WhatsApp",
-    image: "images/vehiculos/moto-electrica.jpg"
-  },
-  {
-    name: "Moto Suzuki",
-    type: "Moto",
-    specs: ["2 pasajeros", "Buen rendimiento"],
-    price: "Consultar por WhatsApp",
-    image: "images/vehiculos/moto-suzuki.jpg"
+    images: ["images/vehiculos/geely-ck-taxi.jpg"]
   }
 ];
 
@@ -79,22 +82,43 @@ function whatsappHref(message){
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-function buildVehicleCard(vehicle){
+function buildVehicleCard(vehicle, vehicleIndex){
   const icon = vehicle.type.toLowerCase() === "moto" ? motoIconSVG : carIconSVG;
   const message = `Hola, me interesa rentar el ${vehicle.name} en Santiago de Cuba. ¿Está disponible?`;
 
   const specsHTML = vehicle.specs.map(s => `<li>${s}</li>`).join("");
 
+  const slidesHTML = vehicle.images.map(src => `
+    <div class="photo-slide">
+      <img src="${src}" alt="${vehicle.name}"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="photo-placeholder" style="display:none;">
+        ${icon}
+        <span>Foto próximamente</span>
+      </div>
+    </div>
+  `).join("");
+
+  const hasMultiple = vehicle.images.length > 1;
+
+  const arrowsHTML = hasMultiple ? `
+    <button type="button" class="photo-arrow photo-arrow-prev" aria-label="Foto anterior">‹</button>
+    <button type="button" class="photo-arrow photo-arrow-next" aria-label="Foto siguiente">›</button>
+  ` : "";
+
+  const dotsHTML = hasMultiple ? `
+    <div class="photo-dots">
+      ${vehicle.images.map((_, i) => `<span class="photo-dot${i === 0 ? " is-active" : ""}"></span>`).join("")}
+    </div>
+  ` : "";
+
   return `
     <article class="vehicle-card">
-      <div class="vehicle-photo">
+      <div class="vehicle-photo" data-vehicle-index="${vehicleIndex}" data-slide-count="${vehicle.images.length}">
         <span class="vehicle-type-tag">${vehicle.type}</span>
-        <img src="${vehicle.image}" alt="${vehicle.name}"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="photo-placeholder" style="display:none;">
-          ${icon}
-          <span>Foto próximamente</span>
-        </div>
+        <div class="photo-track">${slidesHTML}</div>
+        ${arrowsHTML}
+        ${dotsHTML}
       </div>
       <div class="vehicle-body">
         <h3>${vehicle.name}</h3>
@@ -111,7 +135,44 @@ function buildVehicleCard(vehicle){
 function renderVehicles(){
   const grid = document.getElementById("vehicleGrid");
   if(!grid) return;
-  grid.innerHTML = VEHICLES.map(buildVehicleCard).join("");
+  grid.innerHTML = VEHICLES.map((v, i) => buildVehicleCard(v, i)).join("");
+}
+
+function goToSlide(photoEl, index){
+  const track = photoEl.querySelector(".photo-track");
+  const count = Number(photoEl.dataset.slideCount || 1);
+  const clamped = ((index % count) + count) % count;
+  track.style.transform = `translateX(-${clamped * 100}%)`;
+  photoEl.dataset.currentSlide = clamped;
+
+  const dots = photoEl.querySelectorAll(".photo-dot");
+  dots.forEach((dot, i) => dot.classList.toggle("is-active", i === clamped));
+}
+
+function initPhotoCarousels(){
+  document.querySelectorAll(".vehicle-photo").forEach(photoEl => {
+    const count = Number(photoEl.dataset.slideCount || 1);
+    if(count <= 1) return;
+
+    photoEl.dataset.currentSlide = 0;
+
+    const prevBtn = photoEl.querySelector(".photo-arrow-prev");
+    const nextBtn = photoEl.querySelector(".photo-arrow-next");
+
+    prevBtn.addEventListener("click", () => {
+      const current = Number(photoEl.dataset.currentSlide || 0);
+      goToSlide(photoEl, current - 1);
+    });
+
+    nextBtn.addEventListener("click", () => {
+      const current = Number(photoEl.dataset.currentSlide || 0);
+      goToSlide(photoEl, current + 1);
+    });
+
+    photoEl.querySelectorAll(".photo-dot").forEach((dot, i) => {
+      dot.addEventListener("click", () => goToSlide(photoEl, i));
+    });
+  });
 }
 
 function showToast(text){
@@ -167,6 +228,7 @@ function initNavToggle(){
 
 document.addEventListener("DOMContentLoaded", () => {
   renderVehicles();
+  initPhotoCarousels();
   initWhatsAppButtons();
   initNavToggle();
 
